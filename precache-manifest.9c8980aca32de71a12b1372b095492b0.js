@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f0743af5fcea750d4c4b5e3ad9c9c414",
+    "revision": "393f8f83b7ea58fc217c71ee61d12cee",
     "url": "/logaze/index.html"
   },
   {
