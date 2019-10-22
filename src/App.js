@@ -4,7 +4,12 @@ import { AgGridReact } from 'ag-grid-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham-dark.css';
-import { useData } from './data';
+import {
+  useData,
+  loadFromJsonbin,
+  dataToCsv,
+  download
+} from './data';
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
@@ -24,6 +29,8 @@ const renderDecimal = (decimalPlaces) => (value) =>
 const nullCheck = (fn) => ({ value }) => value === null ? value : fn(value);
 
 const prefixDollarSign = (fn) => (s) => `$${fn(s)}`;
+
+const downloadCsv = () => loadFromJsonbin().then(data => download('logaze.csv', dataToCsv(data)));
 
 const App = () => {
   const data = useData();
@@ -102,7 +109,7 @@ const App = () => {
         <Nav className="mr-auto">
           <Nav.Link href="#home">faq</Nav.Link>
           <Nav.Link href="#link">rescrape</Nav.Link>
-          <Nav.Link href="#link">json</Nav.Link>
+          <Nav.Link onClick={downloadCsv}>csv</Nav.Link>
         </Nav>
       </Navbar>
       <div className="ag-theme-balham-dark table-wrapper">
