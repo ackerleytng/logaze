@@ -1,18 +1,14 @@
-.logaze-table {
-  height: 100vh;
+body {
+  background-color: rgb(52, 58, 64) !important;
+}
+
+.table-wrapper {
+  width: 98%;
+  height: calc(98vh - 56px);
+  margin: auto;
+}
+
+.ag-row .ag-cell {
   display: flex;
-  flex-direction: column;
-}
-
-.logaze-table-wrapper {
-  width: 100%;
-  height: 100%;
-}
-
-a {
-  color: white;
-}
-
-a:hover {
-  text-decoration: none;
+  align-items: center;
 }
