@@ -13,8 +13,7 @@ const renderLink = (value) => (
 
 const renderBoolean = (value) => value ? 'Yes' : 'No';
 
-const renderDecimal = (decimalPlaces) => (value) =>
-      value === null ? value : value.toFixed(decimalPlaces);
+const renderDecimal = (decimalPlaces) => (value) => value.toFixed(decimalPlaces);
 
 const nullCheck = (fn) => ({ value }) => value === null ? value : fn(value);
 
