@@ -14,6 +14,7 @@ import {
   getTime,
   getLastScrapeTime,
   setLastScrapeTime,
+  useScrapeTime,
 } from './time';
 import Grid from './Grid'
 import About from './About'
@@ -29,19 +30,23 @@ const shouldScrape = async () => {
   return !now.isValid() || !last.isValid() || now.isAfter(last.add(4, 'hours'));
 }
 
-const scraperAddr = 'http://logaze.herokuapp.com/';
-const scrapeIfNecessary = () => {
-  if (shouldScrape()) {
-    console.log("Triggering scraping!");
-    fetch(scraperAddr);
-    getTime().then(setLastScrapeTime);
-  }
-}
-
 const App = () => {
   const data = useData();
+  const scrapeTime = useScrapeTime();
+  const lastUpdatedText = scrapeTime.isValid() ? `, last updated ${scrapeTime.fromNow()}` : '';
+  const scraperAddr = 'http://logaze.herokuapp.com/';
 
-  useEffect(scrapeIfNecessary, []);
+  useEffect(() => {
+    const scrapeIfNecessary = async () => {
+      if (await shouldScrape()) {
+        console.log("Triggering scraping!");
+        fetch(scraperAddr)
+          .then(() => getTime().then(setLastScrapeTime));
+      }
+    };
+
+    scrapeIfNecessary();
+  }, []);
 
   const [aboutModalShow, setAboutModalShow] = useState(false);
   const [faqModalShow, setFaqModalShow] = useState(false);
@@ -74,7 +79,7 @@ const App = () => {
         </Nav>
         <Nav>
           <Navbar.Text>
-            <small>{data.length} laptops found</small>
+            <small>{data.length} laptops found{lastUpdatedText}</small>
           </Navbar.Text>
         </Nav>
       </Navbar>
