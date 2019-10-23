@@ -8,7 +8,7 @@ import moment from 'moment';
  * afford to be slightly off as long was we're approximately consistent
  */
 export const getTime = () => {
-  const utc = 'http://worldtimeapi.org/api/timezone/Etc/UTC';
+  const utc = 'https://worldtimeapi.org/api/timezone/Etc/UTC';
   return fetch(utc).then(response => moment(response.json().utc_datetime));
 }
 

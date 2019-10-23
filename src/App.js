@@ -34,7 +34,7 @@ const App = () => {
   const data = useData();
   const scrapeTime = useScrapeTime();
   const lastUpdatedText = scrapeTime.isValid() ? `, last updated ${scrapeTime.fromNow()}` : '';
-  const scraperAddr = 'http://logaze.herokuapp.com/';
+  const scraperAddr = 'https://logaze.herokuapp.com/';
 
   useEffect(() => {
     const scrapeIfNecessary = async () => {
