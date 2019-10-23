@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar'
@@ -10,6 +10,11 @@ import {
   dataToCsv,
   download
 } from './data';
+import {
+  getTime,
+  getLastScrapeTime,
+  setLastScrapeTime,
+} from './time';
 import Grid from './Grid'
 import About from './About'
 import Faq from './Faq'
@@ -18,8 +23,25 @@ import RescrapeToast from './RescrapeToast'
 
 const downloadCsv = () => loadFromJsonbin().then(data => download('logaze.csv', dataToCsv(data)));
 
+const shouldScrape = async () => {
+  const now = await getTime();
+  const last = await getLastScrapeTime();
+  return !now.isValid() || !last.isValid() || now.isAfter(last.add(4, 'hours'));
+}
+
+const scraperAddr = 'http://logaze.herokuapp.com/';
+const scrapeIfNecessary = () => {
+  if (shouldScrape()) {
+    console.log("Triggering scraping!");
+    fetch(scraperAddr);
+    getTime().then(setLastScrapeTime);
+  }
+}
+
 const App = () => {
   const data = useData();
+
+  useEffect(scrapeIfNecessary, []);
 
   const [aboutModalShow, setAboutModalShow] = useState(false);
   const [faqModalShow, setFaqModalShow] = useState(false);
@@ -28,7 +50,7 @@ const App = () => {
 
   const rescrape = () => {
     setRescrapeBeforeToastShow(true);
-    fetch("http://logaze.herokuapp.com/").then(() => setRescrapeAfterToastShow(true))
+    fetch(scraperAddr).then(() => setRescrapeAfterToastShow(true))
   };
 
   return (

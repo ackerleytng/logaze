@@ -21,7 +21,7 @@ const Faq = (props) => (
       </dl>
       <dl>
         <dt>How am I contributing to scraping Lenovo Outlet?</dt>
-        <dd>Whenever you open this page, your browser will check when the last update was, and if the last scraping time was more than 4 hours ago, your browser will trigger the scraper automatically. Thank you for helping to trigger the scraping! (not implemented yet. TODO) (Nope, your computer is not being used to scrape Lenovo Outlet.)</dd>
+        <dd>Whenever you open this page, your browser will check when the last update was, and if the last scraping time was more than 4 hours ago, your browser will trigger the scraper automatically. Thank you for helping to trigger the scraping! (Nope, your computer is not being used to scrape Lenovo Outlet.)</dd>
       </dl>
       <dl>
         <dt>What is your backend/scraper?</dt>
