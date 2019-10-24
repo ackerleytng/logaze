@@ -11,8 +11,6 @@ const renderLink = (value) => (
   </Button>
 );
 
-const renderBoolean = (value) => value ? 'Yes' : 'No';
-
 const renderDecimal = (decimalPlaces) => (value) => value.toFixed(decimalPlaces);
 
 const nullCheck = (fn) => ({ value }) => value === null ? value : fn(value);
@@ -29,10 +27,10 @@ const Grid = ({ data }) => {
     {headerName: 'Type', field: 'product-type', width: 70},
     {headerName: 'Model', field: 'model'},
     {headerName: 'Screen Size', field: 'screen-size', width: 70,
-     cellRenderer: nullCheck(renderDecimal(1)), filter: 'agNumberColumnFilter'},
+     cellRenderer: nullCheck(renderDecimal(1)),
+     filter: 'agNumberColumnFilter'},
     {headerName: 'Resolution', field: 'resolution', width: 100},
-    {headerName: 'IPS Screen?', field: 'screen-has-ips', width: 70,
-     cellRenderer: nullCheck(renderBoolean)},
+    {headerName: 'IPS Screen?', field: 'screen-has-ips', width: 70},
     {headerName: 'Display', field: 'display-type'},
     {headerName: 'Memory Size', field: 'memory-size', width: 70},
     {headerName: 'Hard Drive Type', field: 'hard-drive-type', width: 70},
@@ -42,12 +40,10 @@ const Grid = ({ data }) => {
     {headerName: 'Processor', field: 'processor'},
     {headerName: 'Wireless', field: 'wireless'},
     {headerName: 'Graphics', field: 'graphics'},
-    {headerName: 'Touchscreen?', field: 'screen-supports-touch', width: 70,
-     cellRenderer: nullCheck(renderBoolean)},
+    {headerName: 'Touchscreen?', field: 'screen-supports-touch', width: 70},
     {headerName: 'Hard Drive', field: 'hard-drive'},
     {headerName: 'Memory', field: 'memory'},
-    {headerName: 'Memory Soldered?', field: 'memory-soldered', width: 70,
-     cellRenderer: nullCheck(renderBoolean)},
+    {headerName: 'Memory Soldered?', field: 'memory-soldered', width: 70},
     {headerName: 'Processor Cache', field: 'processor-cache', width: 70},
     {headerName: 'Battery', field: 'battery'},
     {headerName: 'Warranty', field: 'warranty'},
