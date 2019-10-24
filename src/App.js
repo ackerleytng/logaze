@@ -36,18 +36,6 @@ const App = () => {
   const lastUpdatedText = scrapeTime.isValid() ? `, last updated ${scrapeTime.fromNow()}` : '';
   const scraperAddr = 'https://logaze.herokuapp.com/';
 
-  useEffect(() => {
-    const scrapeIfNecessary = async () => {
-      if (await shouldScrape()) {
-        console.log("Triggering scraping!");
-        fetch(scraperAddr)
-          .then(() => getTime().then(setLastScrapeTime));
-      }
-    };
-
-    scrapeIfNecessary();
-  }, []);
-
   const [aboutModalShow, setAboutModalShow] = useState(false);
   const [faqModalShow, setFaqModalShow] = useState(false);
   const [rescrapeBeforeToastShow, setRescrapeBeforeToastShow] = useState(false);
@@ -55,8 +43,20 @@ const App = () => {
 
   const rescrape = () => {
     setRescrapeBeforeToastShow(true);
-    fetch(scraperAddr).then(() => setRescrapeAfterToastShow(true))
-  };
+    fetch(scraperAddr)
+      .then(() => getTime().then(setLastScrapeTime))
+      .then(() => setRescrapeAfterToastShow(true));
+    };
+
+  useEffect(() => {
+    const scrapeIfNecessary = async () => {
+      if (await shouldScrape()) {
+        rescrape();
+      }
+    };
+
+    scrapeIfNecessary();
+  }, []);
 
   return (
     <>
