@@ -61,10 +61,10 @@ const App = () => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand onClick={() => setAboutModalShow(true)}>
           <img
             alt=""
-            src="/logo.svg"
+            src="/pouchie-bino-white-bg.svg"
             width="30"
             height="30"
             className="d-inline-block align-top"
