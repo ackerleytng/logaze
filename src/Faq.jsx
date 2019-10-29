@@ -33,11 +33,11 @@ const Faq = (props) => (
       </dl>
       <dl>
         <dt>Is this insecure, since the data being served from jsonbin.io could be written to by anyone?</dt>
-        <dd>Yes, this means that if someone writes to the bin at <a href="https://jsonbin.io">jsonbin.io</a>, they could potentially use XSS on you. I believe <a href="https://www.ag-grid.com">ag-grid</a> escapes cell contents, but I will verify that. (TODO)</dd>
+        <dd>Yes, this means that if someone writes to the bin at <a href="https://jsonbin.io">jsonbin.io</a>, they could potentially use XSS on you. <a href="https://www.ag-grid.com">ag-grid</a> was previously vulnerable to XSS (<a href="https://github.com/ag-grid/ag-grid/issues/1961">#1961</a>, <a href="https://github.com/ag-grid/ag-grid/issues/1287">#1287</a>), but that has since been <a href="https://github.com/dominikg/ag-grid/commit/28625a36bf5a3d98081f44ef73d548e0191dfc2a">fixed</a>, by using <code>.textContent</code> to render cell contents. This prevents the data from being interpreted as html and protects clients from XSS.</dd>
       </dl>
       <dl>
         <dt>Why not secure the bin at jsonbin.io?</dt>
-        <dd>I wish <a href="https://jsonbin.io">jsonbin.io</a> allowed users to protect bins from writes with a key, but allow public access to the bin. As I understand it, they do have private bins, but that means needing the same key for access. If I have to embed the key in the web client, we're back to square one in protecting the bin from unauthorized writes.</dd>
+        <dd>I wish <a href="https://jsonbin.io">jsonbin.io</a> allowed users to protect bins from writes with a key, and yet allow public access to the bin. As I understand it, they do have private bins, but that means needing the same key for access. If I have to embed the key in the web client, we're back to square one in protecting the bin from unauthorized writes.</dd>
       </dl>
     </Modal.Body>
     <Modal.Footer>
