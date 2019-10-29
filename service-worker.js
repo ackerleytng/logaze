@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/logaze/precache-manifest.e1d6103c0b6457050f68dd2d3358f00e.js"
+  "/logaze/precache-manifest.1b4b6af537dbcb9761d975eb16a4c492.js"
 );
 
 self.addEventListener('message', (event) => {
