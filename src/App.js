@@ -64,7 +64,7 @@ const App = () => {
         <Navbar.Brand onClick={() => setAboutModalShow(true)}>
           <img
             alt=""
-            src="/pouchie-bino-white-bg.svg"
+            src="pouchie-bino-white-bg.svg"
             width="30"
             height="30"
             className="d-inline-block align-top"

@@ -24,7 +24,7 @@ const About = (props) => (
 
       <p>So I went all out to build logaze, to watch Lenovo's refurbished ThinkPad prices.</p>
 
-      <p style={{textAlign: 'center'}}><img alt="" src="/pouchie-bino.svg" /></p>
+      <p style={{textAlign: 'center'}}><img alt="" src="pouchie-bino.svg" /></p>
 
       <small>p.s. Thanks for loading this page! You're contributing to scraping
         the Lenovo Outlet. (see faq)</small>
