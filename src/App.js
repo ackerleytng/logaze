@@ -68,7 +68,7 @@ const App = () => {
       />
 
       <Navbar expand="sm" bg="dark" variant="dark">
-        <Navbar.Brand onClick={() => rescrape(true)}>
+        <Navbar.Brand onClick={() => setAboutModalShow(true)}>
           <img
             alt=""
             src="pouchie-bino-white-bg.svg"
