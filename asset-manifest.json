@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/logaze/static/css/main.7861076f.chunk.css",
-    "main.js": "/logaze/static/js/main.b2d00e36.chunk.js",
-    "main.js.map": "/logaze/static/js/main.b2d00e36.chunk.js.map",
+    "main.js": "/logaze/static/js/main.3bbd9f0a.chunk.js",
+    "main.js.map": "/logaze/static/js/main.3bbd9f0a.chunk.js.map",
     "runtime-main.js": "/logaze/static/js/runtime-main.d3e0ed3f.js",
     "runtime-main.js.map": "/logaze/static/js/runtime-main.d3e0ed3f.js.map",
     "static/css/2.8ae03ed5.chunk.css": "/logaze/static/css/2.8ae03ed5.chunk.css",
     "static/js/2.4f520f24.chunk.js": "/logaze/static/js/2.4f520f24.chunk.js",
     "static/js/2.4f520f24.chunk.js.map": "/logaze/static/js/2.4f520f24.chunk.js.map",
     "index.html": "/logaze/index.html",
-    "precache-manifest.f82ebde6fd676c26f3b23a7bebf0e04b.js": "/logaze/precache-manifest.f82ebde6fd676c26f3b23a7bebf0e04b.js",
+    "precache-manifest.c617d43fab45786e75cd0af89633d160.js": "/logaze/precache-manifest.c617d43fab45786e75cd0af89633d160.js",
     "service-worker.js": "/logaze/service-worker.js",
     "static/css/2.8ae03ed5.chunk.css.map": "/logaze/static/css/2.8ae03ed5.chunk.css.map",
     "static/css/main.7861076f.chunk.css.map": "/logaze/static/css/main.7861076f.chunk.css.map"
@@ -19,6 +19,6 @@
     "static/css/2.8ae03ed5.chunk.css",
     "static/js/2.4f520f24.chunk.js",
     "static/css/main.7861076f.chunk.css",
-    "static/js/main.b2d00e36.chunk.js"
+    "static/js/main.3bbd9f0a.chunk.js"
   ]
 }
