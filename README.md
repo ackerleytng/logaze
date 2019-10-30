@@ -1,4 +1,4 @@
-![logo](public/pouchie-bino.svg?raw=true "Logo")
+![logo](./public/pouchie-bino.svg)
 
 # logaze
 
@@ -22,7 +22,7 @@ If enough people periodically look at [logaze](https://ackerleytng.github.io/log
 
 ## Development
 
-> Please let me know if you want to contribute!
+> Please let me know if you want to contribute! I'll be so happy to work with you!
 
 To run the app in the development mode,
 
