@@ -4,6 +4,8 @@
 
 Watching laptops on Lenovo outlet - https://ackerleytng.github.io/logaze/
 
+`logaze` presents a data-centric view of the laptops available on Lenovo outlet, so that you can filter and sort through them to get the laptop you want.
+
 ## Components/Architecture
 
 This app has three parts
@@ -16,7 +18,7 @@ This lean architecture provides the user with quick data access by caching resul
 
 When a user accesses [logaze](https://ackerleytng.github.io/logaze/), the user sees cached results, retrieved immediately from [jsonbin.io](https://jsonbin.io/). This allows the user to quickly start looking through the data (the laptop options).
 
-While that happens, the user's browser helps to check the recency of the cached results, and if necessary, triggers the scraper, hosted at https://logaze.herokuapp.com.
+While that happens, the user's browser helps to check the recency of the cached results, and if necessary, triggers the scraper, hosted at https://logaze.herokuapp.com, which writes to [jsonbin.io](https://jsonbin.io/).
 
 If enough people periodically look at [logaze](https://ackerleytng.github.io/logaze/), people should generally get rather recent results!
 
