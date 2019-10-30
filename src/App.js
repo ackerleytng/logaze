@@ -46,7 +46,7 @@ const App = () => {
     fetch(scraperAddr)
       .then(() => getTime().then(setLastScrapeTime))
       .then(() => setRescrapeAfterToastShow(true));
-    };
+  };
 
   useEffect(() => {
     const scrapeIfNecessary = async () => {
@@ -60,8 +60,15 @@ const App = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand onClick={() => setAboutModalShow(true)}>
+      <RescrapeToast
+        beforeOnClose={() => setRescrapeBeforeToastShow(false)}
+        beforeShow={rescrapeBeforeToastShow}
+        afterOnClose={() => setRescrapeAfterToastShow(false)}
+        afterShow={rescrapeAfterToastShow}
+      />
+
+      <Navbar expand="sm" bg="dark" variant="dark">
+        <Navbar.Brand onClick={() => rescrape(true)}>
           <img
             alt=""
             src="pouchie-bino-white-bg.svg"
@@ -71,25 +78,19 @@ const App = () => {
           />{' '}
           logaze
         </Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link onClick={() => setAboutModalShow(true)}>about</Nav.Link>
-          <Nav.Link onClick={() => setFaqModalShow(true)}>faq</Nav.Link>
-          <Nav.Link onClick={() => rescrape()}>rescrape</Nav.Link>
-          <Nav.Link onClick={downloadCsv}>csv</Nav.Link>
-        </Nav>
-        <Nav>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="#" onClick={() => setAboutModalShow(true)}>about</Nav.Link>
+            <Nav.Link href="#" onClick={() => setFaqModalShow(true)}>faq</Nav.Link>
+            <Nav.Link href="#" onClick={() => rescrape()}>rescrape</Nav.Link>
+            <Nav.Link href="#" onClick={downloadCsv}>csv</Nav.Link>
+          </Nav>
           <Navbar.Text>
             <small>{data.length} laptops found{lastUpdatedText}</small>
           </Navbar.Text>
-        </Nav>
+        </Navbar.Collapse>
       </Navbar>
-
-      <RescrapeToast
-        beforeOnClose={() => setRescrapeBeforeToastShow(false)}
-        beforeShow={rescrapeBeforeToastShow}
-        afterOnClose={() => setRescrapeAfterToastShow(false)}
-        afterShow={rescrapeAfterToastShow}
-      />
 
       <Grid data={data} />
 
