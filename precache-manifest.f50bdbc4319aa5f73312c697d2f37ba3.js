@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ac7e86f55d48d56a7d6a720c296a6427",
+    "revision": "62634d88db6ef1235e30bd631193408c",
     "url": "/logaze/index.html"
   },
   {
-    "revision": "c4bd2b7902c11bd10583",
+    "revision": "fa96caf25cd592a32649",
     "url": "/logaze/static/css/2.8ae03ed5.chunk.css"
   },
   {
-    "revision": "05ad5e22a11c7af4ee42",
+    "revision": "02b9c6e185d6c533f693",
     "url": "/logaze/static/css/main.7861076f.chunk.css"
   },
   {
-    "revision": "c4bd2b7902c11bd10583",
-    "url": "/logaze/static/js/2.4f520f24.chunk.js"
+    "revision": "fa96caf25cd592a32649",
+    "url": "/logaze/static/js/2.ce47680e.chunk.js"
   },
   {
-    "revision": "05ad5e22a11c7af4ee42",
-    "url": "/logaze/static/js/main.3bbd9f0a.chunk.js"
+    "revision": "02b9c6e185d6c533f693",
+    "url": "/logaze/static/js/main.f9b8a1e6.chunk.js"
   },
   {
     "revision": "aee4c6897dced854c78f",
