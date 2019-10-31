@@ -85,6 +85,7 @@ const App = () => {
             <Nav.Link href="#" onClick={() => setFaqModalShow(true)}>faq</Nav.Link>
             <Nav.Link href="#" onClick={() => rescrape()}>rescrape</Nav.Link>
             <Nav.Link href="#" onClick={downloadCsv}>csv</Nav.Link>
+            <Nav.Link href="https://github.com/ackerleytng/logaze/issues">issues?</Nav.Link>
           </Nav>
           <Navbar.Text>
             <small>{data.length} laptops found{lastUpdatedText}</small>
