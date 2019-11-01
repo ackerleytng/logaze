@@ -68,7 +68,6 @@ const Grid = ({ data }) => {
     defaultColDef,
     suppressCellSelection: true,
     enableCellTextSelection: true,
-    suppressHorizontalScroll: true,
     rowHeight: 40,
     headerHeight: 40,
   };
