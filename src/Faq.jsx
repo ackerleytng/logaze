@@ -29,15 +29,15 @@ const Faq = (props) => (
       </dl>
       <dl>
         <dt>How are you caching scraping results?</dt>
-        <dd>I'm using <a href="https://jsonbin.io">jsonbin.io</a>! They are a really great service that is like pastebin, but for json. They have a nice API for updating bins, and they allow you to update the same bin with new data!</dd>
+        <dd>I'm using <a href="https://jsonblob.com">jsonblob.com</a>! They are a really great service that is like pastebin, but for json. They have a nice API for updating stored json!</dd>
       </dl>
       <dl>
-        <dt>Is this insecure, since the data being served from jsonbin.io could be written to by anyone?</dt>
-        <dd>Yes, this means that if someone writes to the bin at <a href="https://jsonbin.io">jsonbin.io</a>, they could potentially use XSS on you. <a href="https://www.ag-grid.com">ag-grid</a> was previously vulnerable to XSS (<a href="https://github.com/ag-grid/ag-grid/issues/1961">#1961</a>, <a href="https://github.com/ag-grid/ag-grid/issues/1287">#1287</a>), but that has since been <a href="https://github.com/dominikg/ag-grid/commit/28625a36bf5a3d98081f44ef73d548e0191dfc2a">fixed</a>, by using <code>.textContent</code> to render cell contents. This prevents the data from being interpreted as html and protects clients from XSS.</dd>
+        <dt>Is this insecure, since the data being served from jsonblob.com could be written to by anyone?</dt>
+        <dd>Yes, this means that if someone writes to the stored json at <a href="https://jsonblob.com">jsonblob.com</a>, they could potentially use XSS on you. <a href="https://www.ag-grid.com">ag-grid</a> was previously vulnerable to XSS (<a href="https://github.com/ag-grid/ag-grid/issues/1961">#1961</a>, <a href="https://github.com/ag-grid/ag-grid/issues/1287">#1287</a>), but that has since been <a href="https://github.com/dominikg/ag-grid/commit/28625a36bf5a3d98081f44ef73d548e0191dfc2a">fixed</a>, by using <code>.textContent</code> to render cell contents. This prevents the data from being interpreted as html and protects clients from XSS.</dd>
       </dl>
       <dl>
-        <dt>Why not secure the bin at jsonbin.io?</dt>
-        <dd>I wish <a href="https://jsonbin.io">jsonbin.io</a> allowed users to protect bins from writes with a key, and yet allow public access to the bin. As I understand it, they do have private bins, but that means needing the same key for access. If I have to embed the key in the web client, we're back to square one in protecting the bin from unauthorized writes.</dd>
+        <dt>Why not secure the storage at jsonblob.com?</dt>
+        <dd>It would be great if <a href="https://jsonblob.com">jsonblob.com</a> allowed users to control writes using a key, and yet allow public access to the data.</dd>
       </dl>
     </Modal.Body>
     <Modal.Footer>

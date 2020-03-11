@@ -12,13 +12,13 @@ This app has three parts
 
 + Frontend (this repo)
 + [Scraper](https://github.com/ackerleytng/logaze-scraper), written in clojure!
-+ Result cache, hosted at [jsonbin.io](https://jsonbin.io/)
++ Result cache, hosted at [jsonblob.com](https://jsonblob.com/)
 
-This lean architecture provides the user with quick data access by caching results at [jsonbin.io](https://jsonbin.io/), while running a scraper on a free heroku dyno that sleeps during periods of inactivity.
+This lean architecture provides the user with quick data access by caching results at [jsonblob.com](https://jsonblob.com/), while running a scraper on a free heroku dyno that sleeps during periods of inactivity.
 
-When a user accesses [logaze](https://ackerleytng.github.io/logaze/), the user sees cached results, retrieved immediately from [jsonbin.io](https://jsonbin.io/). This allows the user to quickly start looking through the data (the laptop options).
+When a user accesses [logaze](https://ackerleytng.github.io/logaze/), the user sees cached results, retrieved immediately from [jsonblob.com](https://jsonblob.com/). This allows the user to quickly start looking through the data (the laptop options).
 
-While that happens, the user's browser helps to check the recency of the cached results, and if necessary, triggers the scraper, hosted at https://logaze.herokuapp.com, which writes to [jsonbin.io](https://jsonbin.io/).
+While that happens, the user's browser helps to check the recency of the cached results, and if necessary, triggers the scraper, hosted at https://logaze.herokuapp.com, which writes to [jsonblob.com](https://jsonblob.com/).
 
 If enough people periodically look at [logaze](https://ackerleytng.github.io/logaze/), people should generally get rather recent results!
 
