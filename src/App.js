@@ -6,7 +6,7 @@ import Nav from 'react-bootstrap/Nav'
 
 import {
   useData,
-  loadFromJsonbin,
+  loadFromStorage,
   dataToCsv,
   download
 } from './data';
@@ -22,7 +22,7 @@ import Faq from './Faq'
 import RescrapeToast from './RescrapeToast'
 
 
-const downloadCsv = () => loadFromJsonbin().then(data => download('logaze.csv', dataToCsv(data)));
+const downloadCsv = () => loadFromStorage().then(data => download('logaze.csv', dataToCsv(data)));
 
 const shouldScrape = async () => {
   const now = await getTime();

@@ -12,23 +12,22 @@ export const getTime = () => {
   return fetch(utc).then(response => moment(response.json().utc_datetime));
 }
 
-const scrapeTimeBinId = '5db0487cdc9e973e1f74ad2b';
-const scrapeTimeJsonBinAddr = `https://api.jsonbin.io/b/${scrapeTimeBinId}`;
+const scrapeTimeStorageAddr = 'https://jsonblob.com/api/jsonBlob/8adcab2c-63b1-11ea-ad21-457f7983555e';
 
 /**
- * Sets the last scrape time at jsonbin, returns a moment instance
+ * Sets the last scrape time at storage, returns a moment instance
  */
 export const getLastScrapeTime = () =>
-  fetch(scrapeTimeJsonBinAddr + '/latest')
+  fetch(scrapeTimeStorageAddr)
   .then(response => response.json())
   .then(data => moment(data.lastScraped));
 
 /**
- * Sets the last scrape time at jsonbin, where m is a moment instance
+ * Sets the last scrape time at storage, where m is a moment instance
  */
 export const setLastScrapeTime = (m) => {
   const data = {lastScraped: m.format()}
-  fetch(scrapeTimeJsonBinAddr, {
+  fetch(scrapeTimeStorageAddr, {
     method: 'PUT',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },

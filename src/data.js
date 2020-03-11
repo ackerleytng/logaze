@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
 
-export const loadFromJsonbin = () => {
-  const binId = '5dac6fed5751f76337fd4ac2';
-  const jsonbinAddr = `https://api.jsonbin.io/b/${binId}/latest`;
-
-  return fetch(jsonbinAddr).then(response => response.json());
+export const loadFromStorage = () => {
+  const storageAddr = 'https://jsonblob.com/api/jsonBlob/381d4455-63af-11ea-ad21-453934360a11';
+  return fetch(storageAddr).then(response => response.json());
 };
 
 export const useData = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    loadFromJsonbin().then(setData);
+    loadFromStorage().then(setData);
   }, []);
 
   return data;
