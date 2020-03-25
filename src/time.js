@@ -8,8 +8,23 @@ import moment from 'moment';
  * afford to be slightly off as long was we're approximately consistent
  */
 export const getTime = () => {
-  const utc = 'https://worldtimeapi.org/api/timezone/Etc/UTC';
-  return fetch(utc).then(response => moment(response.json().utc_datetime));
+  const utc = [ {url: 'http://worldclockapi.com/api/json/utc/now', propName: 'currentDateTime'}, 
+                {url: 'https://worldtimeapi.org/api/timezone/Etc/UTC', propName: 'utc_datetime'}
+                ];
+
+  const fetchRetry = (urls, n) => fetch(urls[n].url)
+  .catch(err => {
+    if(n === 0) {
+      throw err;
+    }
+    return fetchRetry(urls, n-1);
+  });
+
+  return fetchRetry(utc, utc.length-1)
+    .then(response => {
+      let propName = utc.find(({url}) => url === response.url).propName;
+      return moment(response.json()[propName]);
+    });
 }
 
 const scrapeTimeStorageAddr = 'https://jsonblob.com/api/jsonBlob/8adcab2c-63b1-11ea-ad21-457f7983555e';
