@@ -2,29 +2,32 @@ import { useState, useEffect } from 'react';
 import moment from 'moment';
 
 /**
- * Gets the current time from worldtimeapi, returns a moment instance
+ * Gets the current time from online apis, returns a moment instance in utc mode
  *
  * Don't trust user's configured time to be right, hence query an api - we can
  * afford to be slightly off as long was we're approximately consistent
+ *
+ * Fall back to user's configured time if none of the APIs can be reached
  */
 export const getTime = () => {
-  const utc = [ {url: 'http://worldclockapi.com/api/json/utc/now', propName: 'currentDateTime'}, 
-                {url: 'https://worldtimeapi.org/api/timezone/Etc/UTC', propName: 'utc_datetime'}
-                ];
+  // In order of priority: first try the topmost API, then the next
+  const apis = [
+    { url: 'https://worldtimeapi.org/api/timezone/Etc/UTC', propName: 'utc_datetime' },
+    { url: 'http://worldclockapi.com/api/json/utc/now', propName: 'currentDateTime' },
+  ];
 
-  const fetchRetry = (urls, n) => fetch(urls[n].url)
-  .catch(err => {
-    if(n === 0) {
-      throw err;
-    }
-    return fetchRetry(urls, n-1);
-  });
+  const fetchRetry = (n = 0) => fetch(apis[n].url)
+        .then(r => [r, n])
+        .catch(err => {
+          if (n === apis.length) {
+            throw err;
+          }
+          return fetchRetry(n + 1);
+        });
 
-  return fetchRetry(utc, utc.length-1)
-    .then(response => {
-      let propName = utc.find(({url}) => url === response.url).propName;
-      return moment(response.json()[propName]);
-    });
+  return fetchRetry()
+    .then(([response, n]) => moment.utc(response.json()[apis[n]]))
+    .catch(err => moment.utc());
 }
 
 const scrapeTimeStorageAddr = 'https://jsonblob.com/api/jsonBlob/8adcab2c-63b1-11ea-ad21-457f7983555e';
