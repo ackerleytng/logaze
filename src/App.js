@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import mascot from './images/pouchie-bino-white-bg.svg';
 
 import {
   useData,
@@ -71,7 +72,7 @@ const App = () => {
         <Navbar.Brand onClick={() => setAboutModalShow(true)}>
           <img
             alt=""
-            src="pouchie-bino-white-bg.svg"
+            src={mascot}
             width="30"
             height="30"
             className="d-inline-block align-top"
