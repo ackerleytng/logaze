@@ -1,4 +1,4 @@
-![logo](./public/pouchie-bino.svg)
+![logo](./src/images/pouchie-bino.svg)
 
 # logaze
 
