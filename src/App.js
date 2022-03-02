@@ -77,10 +77,10 @@ const App = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#" onClick={() => setAboutModalShow(true)}>about</Nav.Link>
-            <Nav.Link href="#" onClick={() => setFaqModalShow(true)}>faq</Nav.Link>
-            <Nav.Link href="#" onClick={() => rescrape()}>rescrape</Nav.Link>
-            <Nav.Link href="#" onClick={downloadCsv}>csv</Nav.Link>
+            <Nav.Link onClick={() => setAboutModalShow(true)}>about</Nav.Link>
+            <Nav.Link onClick={() => setFaqModalShow(true)}>faq</Nav.Link>
+            <Nav.Link onClick={() => rescrape()}>rescrape</Nav.Link>
+            <Nav.Link onClick={downloadCsv}>csv</Nav.Link>
             <Nav.Link href="https://github.com/ackerleytng/logaze/issues">issues?</Nav.Link>
           </Nav>
         </Navbar.Collapse>
