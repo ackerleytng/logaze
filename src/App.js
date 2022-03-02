@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import mascot from './images/pouchie-bino-white-bg.svg';
+import { ReactComponent as Mascot } from './images/pouchie-bino-white-bg.svg';
 
 import {
   useData,
@@ -68,15 +68,10 @@ const App = () => {
         afterShow={rescrapeAfterToastShow}
       />
 
-      <Navbar expand="sm" bg="dark" variant="dark">
+      <Navbar style={{width: '98%', margin: 'auto'}} expand="sm" bg="dark" variant="dark">
         <Navbar.Brand onClick={() => setAboutModalShow(true)}>
-          <img
-            alt=""
-            src={mascot}
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />{' '}
+          <Mascot width="30" height="30" className="d-inline-block align-top" />
+          {' '}
           logaze
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -88,6 +83,8 @@ const App = () => {
             <Nav.Link href="#" onClick={downloadCsv}>csv</Nav.Link>
             <Nav.Link href="https://github.com/ackerleytng/logaze/issues">issues?</Nav.Link>
           </Nav>
+        </Navbar.Collapse>
+        <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
             <small>{data.length} laptops found{lastUpdatedText}</small>
           </Navbar.Text>

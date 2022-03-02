@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import mascot from './images/pouchie-bino.svg';
+import { ReactComponent as Mascot } from './images/pouchie-bino.svg';
 
 const About = (props) => (
   <Modal
@@ -20,7 +20,7 @@ const About = (props) => (
 
       <p>So, I built logaze to watch laptop prices on Lenovo outlet. On this site, you can sort and filter on any column, on any field you are interested in. If that's not enough, download a csv dump of the data and work through that yourself!</p>
 
-      <p style={{textAlign: 'center'}}><img alt="" src={mascot} /></p>
+      <p style={{textAlign: 'center'}}><Mascot /></p>
 
       <small>p.s. Thanks for loading this page! You're contributing to scraping Lenovo Outlet. (see faq)</small>
     </Modal.Body>
