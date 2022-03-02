@@ -5,7 +5,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham-dark.css';
 
 
-const renderLink = (value) => (
+const BuyButton = (value) => (
   <Button variant="light" size="sm" target="_blank" rel="noopener noreferrer" href={value}>
     Buy
   </Button>
@@ -19,8 +19,7 @@ const prefixDollarSign = (fn) => (s) => `$${fn(s)}`;
 
 const Grid = ({ data }) => {
     const columnDefs = [
-    {headerName: 'USD', field: 'url', width: 65,
-     cellRendererFramework: nullCheck(renderLink)},
+    {headerName: 'USD', field: 'url', width: 65, cellRenderer: nullCheck(BuyButton)},
     {headerName: 'Price', field: 'price', width: 70,
      cellRenderer: nullCheck(prefixDollarSign(renderDecimal(2))),
      filter: 'agNumberColumnFilter', sort: 'asc'},
@@ -66,7 +65,7 @@ const Grid = ({ data }) => {
   const gridOptions = {
     columnDefs,
     defaultColDef,
-    suppressCellSelection: true,
+    suppressCellFocus: true,
     enableCellTextSelection: true,
     rowHeight: 40,
     headerHeight: 40,
