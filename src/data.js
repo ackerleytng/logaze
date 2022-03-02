@@ -16,7 +16,6 @@ export const useData = () => {
 };
 
 export const dataToCsv = (data) => {
-  console.log({conv: data});
   const replacer = (key, value) => value === null ? '' : value;
   const header = Object.keys(data[0]);
 
@@ -27,7 +26,6 @@ export const dataToCsv = (data) => {
 }
 
 export const download = (filename, data) => {
-  console.log({dldata: data});
   let element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
   element.setAttribute('download', filename);
