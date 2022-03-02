@@ -1,26 +1,26 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "befb49615102ae21fd451d5079673618",
+    "revision": "d9918a31f49829c97f24c96520deb6cf",
     "url": "/logaze/index.html"
   },
   {
-    "revision": "c7849948165c24f0d9e3",
-    "url": "/logaze/static/css/2.fc757e7a.chunk.css"
+    "revision": "3ed74f98421a238ce30d",
+    "url": "/logaze/static/css/2.5c970d73.chunk.css"
   },
   {
-    "revision": "724132d9846c77f48888",
-    "url": "/logaze/static/css/main.5599d480.chunk.css"
+    "revision": "6a60aefb495d8d5a835d",
+    "url": "/logaze/static/css/main.7861076f.chunk.css"
   },
   {
-    "revision": "c7849948165c24f0d9e3",
-    "url": "/logaze/static/js/2.f5384484.chunk.js"
+    "revision": "3ed74f98421a238ce30d",
+    "url": "/logaze/static/js/2.2d82b079.chunk.js"
   },
   {
     "revision": "1e60730f596fc7b507978a45305f5c14",
-    "url": "/logaze/static/js/2.f5384484.chunk.js.LICENSE.txt"
+    "url": "/logaze/static/js/2.2d82b079.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "724132d9846c77f48888",
+    "revision": "6a60aefb495d8d5a835d",
     "url": "/logaze/static/js/main.126cd79a.chunk.js"
   },
   {
