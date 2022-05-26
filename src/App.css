@@ -7,8 +7,3 @@ html {
   height: calc(98vh - 56px);
   margin: auto;
 }
-
-.ag-row .ag-cell {
-  display: flex;
-  align-items: center;
-}

@@ -1,14 +1,13 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button'
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham-dark.css';
 
 
-const BuyButton = (value) => (
-  <Button variant="light" size="sm" target="_blank" rel="noopener noreferrer" href={value}>
+const Buy = (value) => (
+  <a target="_blank" rel="noopener noreferrer" href={value}>
     Buy
-  </Button>
+  </a>
 );
 
 const renderDecimal = (decimalPlaces) => (value) => value.toFixed(decimalPlaces);
@@ -18,9 +17,9 @@ const nullCheck = (fn) => ({ value }) => value === null ? value : fn(value);
 const price = (value) => `$${value}`;
 
 const Grid = ({ data }) => {
-    const columnDefs = [
-    {headerName: 'USD', field: 'url', width: 65, cellRenderer: nullCheck(BuyButton)},
-    {headerName: 'Price', field: 'price', width: 70,
+  const columnDefs = [
+    {headerName: '', field: 'url', width: 44, cellRenderer: nullCheck(Buy)},
+    {headerName: 'Price', field: 'price', width: 75,
      cellRenderer: nullCheck(price),
      filter: 'agNumberColumnFilter', sort: 'asc'},
     {headerName: 'Condition', field: 'product-condition', width: 70},
@@ -49,7 +48,9 @@ const Grid = ({ data }) => {
     {headerName: 'Warranty', field: 'warranty'},
     {headerName: 'Weight', field: 'weight'},
     {headerName: 'Operating System', field: 'operating-system'},
-    {headerName: 'Original Price', field: 'orig-price', width: 70, filter: 'agNumberColumnFilter'},
+    {headerName: 'Original Price', field: 'orig-price',
+     cellRenderer: nullCheck(price),
+     width: 75, filter: 'agNumberColumnFilter'},
     {headerName: 'Fingerprint Reader', field: 'fingerprint-reader'},
     {headerName: 'Product Number', field: 'product-number'},
     {headerName: 'Keyboard', field: 'keyboard'},
@@ -66,21 +67,19 @@ const Grid = ({ data }) => {
     defaultColDef,
     suppressCellFocus: true,
     enableCellTextSelection: true,
-    rowHeight: 40,
-    headerHeight: 40,
   };
 
   const onFirstDataRendered = (params) => params.columnApi.autoSizeColumns();
 
   return (
-        <div className="ag-theme-balham-dark table-wrapper">
-        <AgGridReact
-          gridOptions={gridOptions}
-          rowData={data}
-          multiSortKey={'ctrl'}
-          onFirstDataRendered={onFirstDataRendered}
-        />
-      </div>
+    <div className="ag-theme-balham-dark table-wrapper">
+      <AgGridReact
+        gridOptions={gridOptions}
+        rowData={data}
+        multiSortKey={'ctrl'}
+        onFirstDataRendered={onFirstDataRendered}
+      />
+    </div>
   );
 }
 
