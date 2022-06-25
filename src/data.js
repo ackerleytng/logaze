@@ -16,11 +16,13 @@ export const useData = () => {
 };
 
 export const dataToCsv = (data) => {
-  const replacer = (key, value) => value === null ? '' : value;
   const header = Object.keys(data[0]);
 
-  let csv = data.map(row => header.map(
-    fieldName => JSON.stringify(row[fieldName], replacer)).join(','));
+  let csv = data.map(
+    row => header
+      .map(fieldName => `"${(row[fieldName]?.toString() || '').replaceAll('"', '""')}"`)
+      .join(',')
+  );
   csv.unshift(header.join(','));
   return csv.join('\r\n');
 }
