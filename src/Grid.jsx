@@ -12,7 +12,7 @@ const Buy = (value) => (
 
 const renderDecimal = (decimalPlaces) => (value) => value.toFixed(decimalPlaces);
 
-const nullCheck = (fn) => ({ value }) => value === null ? value : fn(value);
+const nullCheck = (fn) => ({ value }) => value && fn(value);
 
 const defaultColDef = {
   sortable: true,
@@ -55,6 +55,8 @@ const Grid = ({ data }) => {
     {headerName: 'Operating System', field: 'operating-system'},
     {headerName: 'Original Price', field: 'orig-price',
      width: 75, filter: 'agNumberColumnFilter', cellRenderer: nullCheck(renderDecimal(2))},
+    {headerName: 'Percentage Savings', field: 'percentage-savings',
+     width: 75, filter: 'agNumberColumnFilter'},
     {headerName: 'Fingerprint Reader', field: 'fingerprint-reader'},
     {headerName: 'Product Number', field: 'product-number'},
     {headerName: 'Keyboard', field: 'keyboard'},
