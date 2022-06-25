@@ -26,7 +26,7 @@ const Grid = ({ data }) => {
   const columnDefs = useMemo(() => [
     {headerName: '', field: 'url', width: 44, cellRenderer: nullCheck(Buy)},
     {headerName: 'Price', field: 'price', width: 75,
-     filter: 'agNumberColumnFilter', sort: 'asc'},
+     filter: 'agNumberColumnFilter', sort: 'asc', cellRenderer: nullCheck(renderDecimal(2))},
     {headerName: 'Condition', field: 'product-condition', width: 70},
     {headerName: 'Model', field: 'model'},
     {headerName: 'Screen Size', field: 'screen-size', width: 70,
@@ -54,7 +54,7 @@ const Grid = ({ data }) => {
     {headerName: 'Weight', field: 'weight'},
     {headerName: 'Operating System', field: 'operating-system'},
     {headerName: 'Original Price', field: 'orig-price',
-     width: 75, filter: 'agNumberColumnFilter'},
+     width: 75, filter: 'agNumberColumnFilter', cellRenderer: nullCheck(renderDecimal(2))},
     {headerName: 'Fingerprint Reader', field: 'fingerprint-reader'},
     {headerName: 'Product Number', field: 'product-number'},
     {headerName: 'Keyboard', field: 'keyboard'},
