@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
-import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham-dark.css';
+
+import { AgGridReact } from 'ag-grid-react';
+import React, { useMemo } from 'react';
 
 
 const Buy = (value) => (
@@ -22,6 +23,28 @@ const defaultColDef = {
 
 const onFirstDataRendered = (params) => params.columnApi.autoSizeColumns();
 
+const memComparator = (aStr, bStr) => {
+  const cleanString = str => parseInt(str.replace('GB', ''))
+  const a = cleanString(aStr);
+  const b = cleanString(bStr);
+  if (a === b) return 0;
+  return (a > b) ? 1 : -1;
+}
+
+
+const storageComparator = (aStr, bStr) => {
+  if (!aStr || !bStr) return 0;
+  const cleanString = str => {
+   return str.includes('GB') ? 
+      parseFloat(str.replace('GB', '')) :
+      parseFloat(str.replace('TB', '')) * 1000;
+  };
+  const a = cleanString(aStr);
+  const b = cleanString(bStr);
+  if (a === b) return 0;
+  return (a > b) ? 1 : -1;
+}
+
 const Grid = ({ data }) => {
   const columnDefs = useMemo(() => [
     {headerName: '', field: 'url', width: 44, cellRenderer: nullCheck(Buy)},
@@ -35,9 +58,9 @@ const Grid = ({ data }) => {
     {headerName: 'Resolution', field: 'resolution', width: 100},
     {headerName: 'IPS Screen?', field: 'screen-has-ips', width: 70},
     {headerName: 'Display', field: 'display'},
-    {headerName: 'Memory Size', field: 'memory-size', width: 70},
+    {headerName: 'Memory Size', field: 'memory-size', width: 70, comparator: memComparator},
     {headerName: 'Storage Type', field: 'storage-type', width: 70},
-    {headerName: 'Storage Size', field: 'storage-size', width: 70},
+    {headerName: 'Storage Size', field: 'storage-size', width: 70, comparator: storageComparator},
     {headerName: 'Processor Brand', field: 'processor-brand', width: 70},
     {headerName: 'Processor Range', field: 'processor-range', width: 80},
     {headerName: 'Processor', field: 'processor'},
