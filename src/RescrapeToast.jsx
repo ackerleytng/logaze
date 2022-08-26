@@ -1,32 +1,34 @@
-import React from 'react';
-import Toast from 'react-bootstrap/Toast'
+import React from "react";
+import Toast from "react-bootstrap/Toast";
 
-const RescrapeToast = ({ beforeOnClose, beforeShow, afterOnClose, afterShow }) => (
+const RescrapeToast = ({
+  beforeOnClose,
+  beforeShow,
+  afterOnClose,
+  afterShow,
+}) => (
   <div
     aria-live="polite"
     aria-atomic="true"
     style={{
-      position: 'relative',
+      position: "relative",
     }}
   >
     <div
       style={{
-        position: 'absolute',
+        position: "absolute",
         top: 0,
         right: 0,
         zIndex: afterShow || beforeShow ? 10 : 0,
       }}
     >
-      <Toast onClose={beforeOnClose}
-             show={beforeShow}
-             delay={3000} autohide>
+      <Toast onClose={beforeOnClose} show={beforeShow} delay={3000} autohide>
         <Toast.Header>
           <strong className="mr-auto">Scraper triggered!</strong>
         </Toast.Header>
         <Toast.Body>Scraper is starting up...</Toast.Body>
       </Toast>
-      <Toast onClose={afterOnClose} show={afterShow}
-             delay={3000} autohide>
+      <Toast onClose={afterOnClose} show={afterShow} delay={3000} autohide>
         <Toast.Header>
           <strong className="mr-auto">Scraping triggered!</strong>
         </Toast.Header>

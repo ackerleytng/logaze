@@ -12,6 +12,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "prettier": "^2.7.1",
     "gh-pages": "^4.0.0",
     "react-scripts": "^5.0.1"
   },
@@ -19,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "prettier --write 'src/**/*.{js,jsx,css}'",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"

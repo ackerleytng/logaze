@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export const loadFromStorage = () => {
-  const storageAddr = 'https://jsonblob.com/api/jsonBlob/381d4455-63af-11ea-ad21-453934360a11';
-  return fetch(storageAddr).then(response => response.json());
+  const storageAddr =
+    "https://jsonblob.com/api/jsonBlob/381d4455-63af-11ea-ad21-453934360a11";
+  return fetch(storageAddr).then((response) => response.json());
 };
 
 export const useData = () => {
@@ -18,21 +19,27 @@ export const useData = () => {
 export const dataToCsv = (data) => {
   const header = Object.keys(data[0]);
 
-  let csv = data.map(
-    row => header
-      .map(fieldName => `"${(row[fieldName]?.toString() || '').replaceAll('"', '""')}"`)
-      .join(',')
+  let csv = data.map((row) =>
+    header
+      .map(
+        (fieldName) =>
+          `"${(row[fieldName]?.toString() || "").replaceAll('"', '""')}"`
+      )
+      .join(",")
   );
-  csv.unshift(header.join(','));
-  return csv.join('\r\n');
-}
+  csv.unshift(header.join(","));
+  return csv.join("\r\n");
+};
 
 export const download = (filename, data) => {
-  let element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-  element.setAttribute('download', filename);
-  element.style.display = 'none';
+  let element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8," + encodeURIComponent(data)
+  );
+  element.setAttribute("download", filename);
+  element.style.display = "none";
   document.body.appendChild(element);
   element.click();
   document.body.removeChild(element);
-}
+};
