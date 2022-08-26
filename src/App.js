@@ -35,7 +35,7 @@ const App = () => {
   const data = useData();
   const scrapeTime = useScrapeTime();
   const lastUpdatedText = scrapeTime.isValid() ? `, last updated ${scrapeTime.fromNow()}` : '';
-  const scraperAddr = 'https://logaze.herokuapp.com/';
+  const scraperAddr = 'https://ackerleytng.alwaysdata.net/logaze/';
 
   const [aboutModalShow, setAboutModalShow] = useState(false);
   const [faqModalShow, setFaqModalShow] = useState(false);

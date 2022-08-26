@@ -25,7 +25,7 @@ const Faq = (props) => (
       </dl>
       <dl>
         <dt>What is your backend/scraper?</dt>
-        <dd>My backend is technically just a json file; the scraper resides on heroku. The heroku free dyno sleeps if it does not receive any traffic for 30 mins, and it takes really long to wake up after sleeping, hence I decided to cache results in a json file for better UX.</dd>
+        <dd>My backend is technically just a json file; the scraper is hosted at an alwaysdata site. The alwaysdata site sleeps if it does not receive any traffic, and it takes really long to wake up after sleeping, hence I decided to cache results in a json file for better UX.</dd>
       </dl>
       <dl>
         <dt>How are you caching scraping results?</dt>
