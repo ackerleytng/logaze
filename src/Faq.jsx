@@ -36,10 +36,9 @@ const Faq = (props) => (
       <dl>
         <dt>What is your backend/scraper?</dt>
         <dd>
-          My backend is technically just a json file; the scraper is hosted at
-          an alwaysdata site. The alwaysdata site sleeps if it does not receive
-          any traffic, and it takes really long to wake up after sleeping, hence
-          I decided to cache results in a json file for better UX.
+          My backend is technically just a json file; the scraper is hosted
+          separately on another platform. Results are cached in a json file
+          for better UX.
         </dd>
       </dl>
       <dl>

@@ -32,7 +32,7 @@ const App = () => {
   const lastUpdatedText = scrapeTime.isValid()
     ? `, last updated ${scrapeTime.fromNow()}`
     : "";
-  const scraperAddr = "https://ackerleytng.alwaysdata.net/logaze/";
+  const scraperAddr = "https://logaze-ackerleytng.koyeb.app/";
 
   const [aboutModalShow, setAboutModalShow] = useState(false);
   const [faqModalShow, setFaqModalShow] = useState(false);
