@@ -36,8 +36,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Notes
 
-`logaze` has been set up with [`gh-pages`](https://github.com/tschaub/gh-pages), so to deploy, just do
+`logaze` has been set up with [`gh-pages`](https://github.com/tschaub/gh-pages), so to deploy, do
 
 ```
-yarn run deploy
+yarn build
+yarn deploy
 ```

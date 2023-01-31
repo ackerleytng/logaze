@@ -37,8 +37,8 @@ const Faq = (props) => (
         <dt>What is your backend/scraper?</dt>
         <dd>
           My backend is technically just a json file; the scraper is hosted
-          separately on another platform. Results are cached in a json file
-          for better UX.
+          separately on another platform. Results are cached in a json file for
+          better UX.
         </dd>
       </dl>
       <dl>
