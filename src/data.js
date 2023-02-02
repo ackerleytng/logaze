@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
 
-export const loadFromStorage = () => {
-  const storageAddr =
-    "https://jsonblob.com/api/jsonBlob/381d4455-63af-11ea-ad21-453934360a11";
-  return fetch(storageAddr).then((response) => response.json());
+const storageAddr0 = "https://jsonblob.com/api/jsonBlob/381d4455-63af-11ea-ad21-453934360a11";
+const storageAddr1 = "https://jsonblob.com/api/jsonBlob/1070684176440901632";
+
+const loadFromStorageLocation = async (location) => {
+    const response = await fetch(location);
+    return response.json();
+};
+
+export const loadFromStorage = async () => {
+    const part0 = await loadFromStorageLocation(storageAddr0);
+    const part1 = await loadFromStorageLocation(storageAddr1);
+    return part0.concat(part1);
 };
 
 export const useData = () => {
