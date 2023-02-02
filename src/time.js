@@ -11,7 +11,7 @@ import moment from "moment";
  * Fall back to user's configured time if none of the APIs can be reached
  */
 export const getTime = async () => {
-  const response = await fetch("/", { method: "HEAD" });
+  const response = await fetch("/logaze/", { method: "HEAD" });
   const dateString = response.headers.get("Date");
   return moment.utc(dateString);
 };
