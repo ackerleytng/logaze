@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/logaze/static/css/main.791e6639.css",
-    "main.js": "/logaze/static/js/main.3440270c.js",
+    "main.js": "/logaze/static/js/main.b5a4b43e.js",
     "static/media/pouchie-bino-white-bg.svg": "/logaze/static/media/pouchie-bino-white-bg.416c10010488398c3c901d6c36fb04dd.svg",
     "static/media/pouchie-bino.svg": "/logaze/static/media/pouchie-bino.02e813c4c2734f44156b386de4bf0564.svg",
     "index.html": "/logaze/index.html",
     "main.791e6639.css.map": "/logaze/static/css/main.791e6639.css.map",
-    "main.3440270c.js.map": "/logaze/static/js/main.3440270c.js.map"
+    "main.b5a4b43e.js.map": "/logaze/static/js/main.b5a4b43e.js.map"
   },
   "entrypoints": [
     "static/css/main.791e6639.css",
-    "static/js/main.3440270c.js"
+    "static/js/main.b5a4b43e.js"
   ]
 }
