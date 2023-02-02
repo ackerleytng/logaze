@@ -88,7 +88,7 @@ const Grid = ({ data }) => {
       { headerName: "Processor Range", field: "processor-range", width: 80 },
       { headerName: "Processor", field: "processor" },
       { headerName: "Wireless", field: "wlan" },
-      { headerName: "Graphics", field: "graphics" },
+      { headerName: "Graphics", field: "graphic-card" },
       { headerName: "Camera", field: "camera" },
       { headerName: "Touchscreen?", field: "touch-screen", width: 70 },
       { headerName: "Storage", field: "storage" },
