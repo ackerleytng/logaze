@@ -3,6 +3,7 @@ import "ag-grid-community/dist/styles/ag-theme-balham-dark.css";
 
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
+import { retrieveSettings, saveSettings, clearSettings } from "./gridSettings";
 
 const Buy = (value) => (
   <a target="_blank" rel="noopener noreferrer" href={value}>
@@ -21,7 +22,46 @@ const defaultColDef = {
   resizable: true,
 };
 
-const onFirstDataRendered = (params) => params.columnApi.autoSizeColumns();
+const retrieveAndApplySettings = (event) => {
+  const settings = retrieveSettings();
+  if (!settings) {
+    return;
+  }
+
+  const { filterModel, columnState } = settings;
+
+  if (!filterModel) {
+    console.error('filterModel is missing!');
+    clearSettings();
+    return;
+  }
+
+  if (!columnState) {
+    console.error('columnState is missing!');
+    clearSettings();
+    return;
+  }
+
+  event.api.setFilterModel(filterModel);
+
+  if (!event.columnApi.applyColumnState(columnState)) {
+    console.error('Error applying column state!');
+    clearSettings();
+  }
+};
+
+const onFirstDataRendered = (event) => {
+  retrieveAndApplySettings(event);
+
+  event.columnApi.autoSizeColumns();
+};
+
+const onSortOrFilterChange = ({ api, columnApi }) => {
+  const columnState = columnApi.getColumnState();
+  const filterModel = api.getFilterModel();
+
+  saveSettings(columnState, filterModel);
+};
 
 const memComparator = (aStr, bStr) => {
   const cleanString = (str) => parseInt(str.replace("GB", ""));
@@ -123,6 +163,8 @@ const Grid = ({ data }) => {
         suppressCellFocus={true}
         enableCellTextSelection={true}
         onFirstDataRendered={onFirstDataRendered}
+        onSortChanged={onSortOrFilterChange}
+        onFilterChanged={onSortOrFilterChange}
       />
     </div>
   );
