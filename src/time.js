@@ -17,7 +17,7 @@ export const getTime = async () => {
 };
 
 const scrapeTimeStorageAddr =
-  "https://jsonblob.com/api/jsonBlob/8adcab2c-63b1-11ea-ad21-457f7983555e";
+  "https://jsonblob.com/api/jsonBlob/1104253402283786240";
 
 /**
  * Sets the last scrape time at storage, returns a moment instance
