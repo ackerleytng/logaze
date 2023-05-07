@@ -29,7 +29,7 @@ If enough people periodically look at [logaze](https://ackerleytng.github.io/log
 To run the app in the development mode,
 
 ```
-yarn start
+npm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -39,6 +39,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 `logaze` has been set up with [`gh-pages`](https://github.com/tschaub/gh-pages), so to deploy, do
 
 ```
-yarn build
-yarn deploy
+npm run deploy
 ```
