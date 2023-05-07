@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/logaze/static/css/main.fcab84ea.css",
-    "main.js": "/logaze/static/js/main.b86fc267.js",
-    "static/media/pouchie-bino-white-bg.svg": "/logaze/static/media/pouchie-bino-white-bg.416c10010488398c3c901d6c36fb04dd.svg",
-    "static/media/pouchie-bino.svg": "/logaze/static/media/pouchie-bino.02e813c4c2734f44156b386de4bf0564.svg",
-    "index.html": "/logaze/index.html",
-    "main.fcab84ea.css.map": "/logaze/static/css/main.fcab84ea.css.map",
-    "main.b86fc267.js.map": "/logaze/static/js/main.b86fc267.js.map"
+    "main.css": "/static/css/main.fcab84ea.css",
+    "main.js": "/static/js/main.ad10105c.js",
+    "static/js/787.5896633b.chunk.js": "/static/js/787.5896633b.chunk.js",
+    "static/media/pouchie-bino-white-bg.svg": "/static/media/pouchie-bino-white-bg.416c10010488398c3c901d6c36fb04dd.svg",
+    "static/media/pouchie-bino.svg": "/static/media/pouchie-bino.02e813c4c2734f44156b386de4bf0564.svg",
+    "index.html": "/index.html",
+    "main.fcab84ea.css.map": "/static/css/main.fcab84ea.css.map",
+    "main.ad10105c.js.map": "/static/js/main.ad10105c.js.map",
+    "787.5896633b.chunk.js.map": "/static/js/787.5896633b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fcab84ea.css",
-    "static/js/main.b86fc267.js"
+    "static/js/main.ad10105c.js"
   ]
 }
