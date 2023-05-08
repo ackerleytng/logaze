@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { formatDistance, isAfter, addHours } from "date-fns";
-import "./App.css";
+import { Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import { ReactComponent as Mascot } from "./images/pouchie-bino-white-bg.svg";
 
+import "./App.css";
 import { useData, loadFromStorage, dataToCsv, download } from "./data";
 import {
   getTime,
@@ -17,8 +15,9 @@ import Grid from "./Grid";
 import About from "./About";
 import Faq from "./Faq";
 import RescrapeToast from "./RescrapeToast";
+import { ReactComponent as Mascot } from "./images/pouchie-bino-white-bg.svg";
 
-const downloadCsv = () =>
+const downloadCsv = (): Promise<void> =>
   loadFromStorage().then((data) => download("logaze.csv", dataToCsv(data)));
 
 const shouldScrape = async (): Promise<boolean> => {
