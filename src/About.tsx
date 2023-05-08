@@ -1,11 +1,15 @@
-import React from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import { Button, Modal } from "react-bootstrap";
 import { ReactComponent as Mascot } from "./images/pouchie-bino.svg";
 
-const About = (props) => (
+interface AboutProps {
+  show: boolean,
+  onHide: () => void,
+};
+
+const About = ({ show, onHide }: AboutProps) => (
   <Modal
-    {...props}
+    show={show}
+    onHide={onHide}
     size="lg"
     aria-labelledby="contained-modal-title-vcenter"
     centered
@@ -45,7 +49,7 @@ const About = (props) => (
         <a href="https://github.com/ackerleytng/logaze-scraper">scraper</a>) and
         React (<a href="https://github.com/ackerleytng/logaze">frontend</a>)
       </small>{" "}
-      <Button onClick={props.onHide}>Close</Button>
+      <Button onClick={onHide}>Close</Button>
     </Modal.Footer>
   </Modal>
 );
