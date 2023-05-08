@@ -1,12 +1,19 @@
 import React from "react";
-import Toast from "react-bootstrap/Toast";
+import { Toast } from "react-bootstrap";
+
+interface RescrapeToastProps {
+  beforeOnClose: (e?: React.MouseEvent | React.KeyboardEvent) => void,
+  beforeShow: boolean,
+  afterOnClose: (e?: React.MouseEvent | React.KeyboardEvent) => void,
+  afterShow: boolean,
+};
 
 const RescrapeToast = ({
   beforeOnClose,
   beforeShow,
   afterOnClose,
   afterShow,
-}) => (
+}: RescrapeToastProps) => (
   <div
     aria-live="polite"
     aria-atomic="true"
