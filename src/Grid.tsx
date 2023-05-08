@@ -1,20 +1,16 @@
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-balham.css";
-
+import { AgGridEvent, ColDef } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
-import React from "react";
-import { retrieveSettings, saveSettings, clearSettings } from "./gridSettings";
 
-const Buy = (value) => (
+import { retrieveSettings, saveSettings, clearSettings } from "./gridSettings";
+import { LaptopData } from "./data";
+
+const Buy = (value: string) => (
   <a target="_blank" rel="noopener noreferrer" href={value}>
     Buy
   </a>
 );
-
-const renderDecimal = (decimalPlaces) => (value) =>
-  value.toFixed(decimalPlaces);
-
-const nullCheck = (fn) => ({ value }) => value && fn(value);
 
 const defaultColDef = {
   sortable: true,
@@ -22,7 +18,7 @@ const defaultColDef = {
   resizable: true,
 };
 
-const retrieveAndApplySettings = (event) => {
+const retrieveAndApplySettings = (event: AgGridEvent) => {
   const settings = retrieveSettings();
   if (!settings) {
     return;
@@ -44,36 +40,36 @@ const retrieveAndApplySettings = (event) => {
 
   event.api.setFilterModel(filterModel);
 
-  if (!event.columnApi.applyColumnState(columnState)) {
+  if (!event.columnApi.applyColumnState({ state: columnState })) {
     console.error('Error applying column state!');
     clearSettings();
   }
 };
 
-const onFirstDataRendered = (event) => {
+const onFirstDataRendered = (event: AgGridEvent) => {
   retrieveAndApplySettings(event);
 
-  event.columnApi.autoSizeColumns();
+  event.columnApi.autoSizeAllColumns(true);
 };
 
-const onSortOrFilterChange = ({ api, columnApi }) => {
+const onSortOrFilterChange = ({ api, columnApi }: AgGridEvent) => {
   const columnState = columnApi.getColumnState();
   const filterModel = api.getFilterModel();
 
   saveSettings(columnState, filterModel);
 };
 
-const memComparator = (aStr, bStr) => {
-  const cleanString = (str) => parseInt(str.replace("GB", ""));
+const memComparator = (aStr: string, bStr: string) => {
+  const cleanString = (str: string) => parseInt(str.replace("GB", ""));
   const a = cleanString(aStr);
   const b = cleanString(bStr);
   if (a === b) return 0;
   return a > b ? 1 : -1;
 };
 
-const storageComparator = (aStr, bStr) => {
+const storageComparator = (aStr: string | null, bStr: string | null) => {
   if (!aStr || !bStr) return 0;
-  const cleanString = (str) => {
+  const cleanString = (str: string) => {
     return str.includes("GB")
       ? parseFloat(str.replace("GB", ""))
       : parseFloat(str.replace("TB", "")) * 1000;
@@ -84,15 +80,15 @@ const storageComparator = (aStr, bStr) => {
   return a > b ? 1 : -1;
 };
 
-const columnDefs = [
-  { headerName: "", field: "url", width: 44, cellRenderer: nullCheck(Buy) },
+const columnDefs: ColDef[] = [
+  { headerName: "", field: "url", width: 44, cellRenderer: Buy },
   {
     headerName: "Price",
     field: "price",
     width: 75,
     filter: "agNumberColumnFilter",
     sort: "asc",
-    cellRenderer: nullCheck(renderDecimal(2)),
+    valueFormatter: ({ value }) => value.toFixed(2),
   },
   { headerName: "Condition", field: "product-condition", width: 70 },
   { headerName: "Model", field: "model" },
@@ -100,7 +96,7 @@ const columnDefs = [
     headerName: "Screen Size",
     field: "screen-size",
     width: 70,
-    cellRenderer: nullCheck(renderDecimal(1)),
+    valueFormatter: ({ value }) => value.toFixed(1),
     filter: "agNumberColumnFilter",
   },
   { headerName: "Resolution", field: "resolution", width: 100 },
@@ -139,7 +135,7 @@ const columnDefs = [
     field: "orig-price",
     width: 75,
     filter: "agNumberColumnFilter",
-    cellRenderer: nullCheck(renderDecimal(2)),
+    valueFormatter: ({ value }) => value.toFixed(2),
   },
   {
     headerName: "Percentage Savings",
@@ -152,7 +148,11 @@ const columnDefs = [
   { headerName: "Keyboard", field: "keyboard" },
 ];
 
-const Grid = ({ data }) => {
+interface GridProps {
+  data: LaptopData[],
+};
+
+const Grid = ({ data }: GridProps) => {
   return (
     <div className="ag-theme-balham-dark table-wrapper">
       <AgGridReact
