@@ -1,5 +1,6 @@
 {
   "name": "logaze",
+  "homepage": "https://ackerleytng.github.io/logaze",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
