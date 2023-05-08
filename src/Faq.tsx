@@ -1,10 +1,14 @@
-import React from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import { Button, Modal }  from "react-bootstrap";
 
-const Faq = (props) => (
+interface FaqProps {
+  show: boolean,
+  onHide: () => void,
+};
+
+const Faq = ({ show, onHide }: FaqProps) => (
   <Modal
-    {...props}
+    show={show}
+    onHide={onHide}
     size="lg"
     aria-labelledby="contained-modal-title-vcenter"
     centered
@@ -81,7 +85,7 @@ const Faq = (props) => (
       </dl>
     </Modal.Body>
     <Modal.Footer>
-      <Button onClick={props.onHide}>Close</Button>
+      <Button onClick={onHide}>Close</Button>
     </Modal.Footer>
   </Modal>
 );
