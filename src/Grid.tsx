@@ -6,7 +6,11 @@ import { AgGridReact } from "ag-grid-react";
 import { retrieveSettings, saveSettings, clearSettings } from "./gridSettings";
 import { LaptopData } from "./data";
 
-const Buy = (value: string) => (
+interface BuyProps {
+  value: string,
+};
+
+const Buy = ({ value }: BuyProps) => (
   <a target="_blank" rel="noopener noreferrer" href={value}>
     Buy
   </a>
