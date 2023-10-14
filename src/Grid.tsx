@@ -63,8 +63,8 @@ const onSortOrFilterChange = ({ api, columnApi }: AgGridEvent) => {
   saveSettings(columnState, filterModel);
 };
 
-const memComparator = (aStr: string, bStr: string) => {
-  const cleanString = (str: string) => parseInt(str.replace("GB", ""));
+const memComparator = (aStr: string | null, bStr: string | null) => {
+  const cleanString = (str: string | null) => str ? parseInt(str.replace("GB", "")) : 0;
   const a = cleanString(aStr);
   const b = cleanString(bStr);
   if (a === b) return 0;
@@ -100,7 +100,7 @@ const columnDefs: ColDef[] = [
     headerName: "Screen Size",
     field: "screen-size",
     width: 70,
-    valueFormatter: ({ value }) => value.toFixed(1),
+    valueFormatter: ({ value }) => value?.toFixed(1) ?? "",
     filter: "agNumberColumnFilter",
   },
   { headerName: "Resolution", field: "resolution", width: 100 },
