@@ -1,6 +1,8 @@
+import { forwardRef, useImperativeHandle, useState } from "react";
+
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-balham.css";
-import { AgGridEvent, ColDef } from "ag-grid-community";
+import { AgGridEvent, ApplyColumnStateParams, ColDef, ColumnApi, ColumnState, GridApi } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 
 import { retrieveSettings, saveSettings, clearSettings } from "./gridSettings";
@@ -152,11 +154,55 @@ const columnDefs: ColDef[] = [
   { headerName: "Keyboard", field: "keyboard" },
 ];
 
+const resetColumnState: ColumnState = {
+  colId: "price",
+  sort: "asc",
+};
+
+const resetColumnStateParams: ApplyColumnStateParams = {
+  state: [resetColumnState],
+  defaultState: {
+    hide: null,
+    flex: null,
+    sort: null,
+    sortIndex: null,
+    aggFunc: null,
+    pivot: null,
+    pivotIndex: null,
+    pinned: null,
+    rowGroup: null,
+    rowGroupIndex: null,
+  }
+};
+
 interface GridProps {
   data: LaptopData[],
 };
 
-const Grid = ({ data }: GridProps) => {
+export type GridHandle = {
+  resetGrid: () => void;
+};
+
+const Grid = forwardRef<GridHandle, GridProps>(({ data }, ref) => {
+  const [gridColumnApi, setGridColumnApi] = useState<ColumnApi>();
+  const [gridApi, setGridApi] = useState<GridApi>();
+
+  const onGridReady = ({ api, columnApi }: AgGridEvent) => {
+    setGridColumnApi(columnApi);
+    setGridApi(api);
+  };
+
+  useImperativeHandle(ref, () => ({
+    resetGrid() {
+      // No need to clear localStorage because resetting will cause onSortOrFilterChange to fire (and re-save localStorage)
+      gridColumnApi?.applyColumnState(resetColumnStateParams);
+      gridApi?.setFilterModel(null);
+
+      // Delay this so that the column state and filters can reset before autosizing
+      setTimeout(() => { gridColumnApi?.autoSizeAllColumns(true); }, 100);
+    },
+  }));
+
   return (
     <div className="ag-theme-balham-dark table-wrapper">
       <AgGridReact
@@ -166,12 +212,13 @@ const Grid = ({ data }: GridProps) => {
         multiSortKey={"ctrl"}
         suppressCellFocus={true}
         enableCellTextSelection={true}
+        onGridReady={onGridReady}
         onFirstDataRendered={onFirstDataRendered}
         onSortChanged={onSortOrFilterChange}
         onFilterChanged={onSortOrFilterChange}
       />
     </div>
   );
-};
+});
 
 export default Grid;

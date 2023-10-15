@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { formatDistance, isAfter, addHours } from "date-fns";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
@@ -11,7 +11,7 @@ import {
   setLastScrapeTime,
   useScrapeTime,
 } from "./time";
-import Grid from "./Grid";
+import Grid, { GridHandle } from "./Grid";
 import About from "./About";
 import Faq from "./Faq";
 import RescrapeToast from "./RescrapeToast";
@@ -58,6 +58,8 @@ const App = () => {
     scrapeIfNecessary();
   }, []);
 
+  const gridRef = useRef<GridHandle>(null);
+
   return (
     <>
       <RescrapeToast
@@ -95,10 +97,19 @@ const App = () => {
               {data.length} laptops found{lastUpdatedText(scrapeTime)}
             </small>
           </Navbar.Text>
+          <Form className="ms-1">
+            <Button
+	      variant="outline-secondary"
+	      size="sm"
+	      onClick={() => { gridRef.current?.resetGrid(); }}
+	      title="Reset sorting/filtering in grid">
+              reset grid
+            </Button>
+          </Form>
         </Navbar.Collapse>
       </Navbar>
 
-      <Grid data={data} />
+      <Grid ref={gridRef} data={data} />
 
       <About show={aboutModalShow} onHide={() => setAboutModalShow(false)} />
       <Faq show={faqModalShow} onHide={() => setFaqModalShow(false)} />
