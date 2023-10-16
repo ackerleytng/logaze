@@ -1,9 +1,8 @@
-html {
-  overflow: hidden;
+div#root {
+  width: 98vw;
+  margin: auto;
 }
 
-.table-wrapper {
-  width: 98%;
-  height: calc(98vh - 56px);
-  margin: auto;
+div#table-wrapper {
+  height: calc(100vh - 56px);
 }

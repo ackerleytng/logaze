@@ -204,7 +204,7 @@ const Grid = forwardRef<GridHandle, GridProps>(({ data }, ref) => {
   }));
 
   return (
-    <div className="ag-theme-balham-dark table-wrapper">
+    <div id="table-wrapper" className="ag-theme-balham-dark">
       <AgGridReact
         columnDefs={columnDefs}
         defaultColDef={defaultColDef}

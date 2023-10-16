@@ -1,5 +1,5 @@
 import { Button, Modal } from "react-bootstrap";
-import { ReactComponent as Mascot } from "./images/pouchie-bino.svg";
+import Mascot from "./images/pouchie-bino.svg?react";
 
 interface AboutProps {
   show: boolean,

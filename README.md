@@ -29,12 +29,14 @@ If enough people periodically look at [logaze](https://ackerleytng.github.io/log
 To run the app in the development mode,
 
 ```
-npm start
+npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
 ## Notes
+
+TODO
 
 `logaze` has been set up with [`gh-pages`](https://github.com/tschaub/gh-pages), so to deploy, do
 

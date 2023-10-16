@@ -15,7 +15,7 @@ import Grid, { GridHandle } from "./Grid";
 import About from "./About";
 import Faq from "./Faq";
 import RescrapeToast from "./RescrapeToast";
-import { ReactComponent as Mascot } from "./images/pouchie-bino-white-bg.svg";
+import Mascot from "./images/pouchie-bino-white-bg.svg?react";
 
 const downloadCsv = (): Promise<void> =>
   loadFromStorage().then((data) => download("logaze.csv", dataToCsv(data)));
@@ -70,7 +70,7 @@ const App = () => {
       />
 
       <Navbar
-        style={{ width: "98%", margin: "auto" }}
+	className="logaze-navbar"
         expand="sm"
         bg="dark"
         variant="dark"
