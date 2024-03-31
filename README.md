@@ -34,12 +34,6 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
-## Notes
+## Deploying
 
-TODO
-
-`logaze` has been set up with [`gh-pages`](https://github.com/tschaub/gh-pages), so to deploy, do
-
-```
-npm run deploy
-```
+Just push to the master branch - a GitHub workflow will deploy the frontend :)
