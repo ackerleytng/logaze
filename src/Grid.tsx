@@ -2,7 +2,7 @@ import { forwardRef, useImperativeHandle, useState } from "react";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-balham.css";
-import { AgGridEvent, ApplyColumnStateParams, ColDef, ColumnApi, ColumnState, GridApi } from "ag-grid-community";
+import { AgGridEvent, ApplyColumnStateParams, ColDef, ColumnState, GridApi } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 
 import { retrieveSettings, saveSettings, clearSettings } from "./gridSettings";
@@ -46,7 +46,7 @@ const retrieveAndApplySettings = (event: AgGridEvent) => {
 
   event.api.setFilterModel(filterModel);
 
-  if (!event.columnApi.applyColumnState({ state: columnState })) {
+  if (!event.api.applyColumnState({ state: columnState })) {
     console.error('Error applying column state!');
     clearSettings();
   }
@@ -55,11 +55,11 @@ const retrieveAndApplySettings = (event: AgGridEvent) => {
 const onFirstDataRendered = (event: AgGridEvent) => {
   retrieveAndApplySettings(event);
 
-  event.columnApi.autoSizeAllColumns(true);
+  event.api.autoSizeAllColumns(true);
 };
 
-const onSortOrFilterChange = ({ api, columnApi }: AgGridEvent) => {
-  const columnState = columnApi.getColumnState();
+const onSortOrFilterChange = ({ api }: AgGridEvent) => {
+  const columnState = api.getColumnState();
   const filterModel = api.getFilterModel();
 
   saveSettings(columnState, filterModel);
@@ -184,22 +184,20 @@ export type GridHandle = {
 };
 
 const Grid = forwardRef<GridHandle, GridProps>(({ data }, ref) => {
-  const [gridColumnApi, setGridColumnApi] = useState<ColumnApi>();
   const [gridApi, setGridApi] = useState<GridApi>();
 
-  const onGridReady = ({ api, columnApi }: AgGridEvent) => {
-    setGridColumnApi(columnApi);
+  const onGridReady = ({ api }: AgGridEvent) => {
     setGridApi(api);
   };
 
   useImperativeHandle(ref, () => ({
     resetGrid() {
       // No need to clear localStorage because resetting will cause onSortOrFilterChange to fire (and re-save localStorage)
-      gridColumnApi?.applyColumnState(resetColumnStateParams);
+      gridApi?.applyColumnState(resetColumnStateParams);
       gridApi?.setFilterModel(null);
 
       // Delay this so that the column state and filters can reset before autosizing
-      setTimeout(() => { gridColumnApi?.autoSizeAllColumns(true); }, 100);
+      setTimeout(() => { gridApi?.autoSizeAllColumns(true); }, 100);
     },
   }));
 
