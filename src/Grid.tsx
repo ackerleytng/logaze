@@ -54,8 +54,6 @@ const retrieveAndApplySettings = (event: AgGridEvent) => {
 
 const onFirstDataRendered = (event: AgGridEvent) => {
   retrieveAndApplySettings(event);
-
-  event.api.autoSizeAllColumns(true);
 };
 
 const onSortOrFilterChange = ({ api }: AgGridEvent) => {
@@ -197,9 +195,6 @@ const Grid = forwardRef<GridHandle, GridProps>(({ data }, ref) => {
 
       gridApi.applyColumnState(resetColumnStateParams);
       gridApi.setFilterModel(null);
-
-      // Delay this so that the column state and filters can reset before autosizing
-      setTimeout(() => { gridApi.autoSizeAllColumns(true); }, 100);
     },
   }));
 
