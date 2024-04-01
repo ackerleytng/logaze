@@ -1,8 +1,8 @@
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-balham.css";
-import { AgGridEvent, ApplyColumnStateParams, ColDef, ColumnState, GridApi } from "ag-grid-community";
+import { AgGridEvent, ApplyColumnStateParams, ColDef, ColumnState } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 
 import { retrieveSettings, saveSettings, clearSettings } from "./gridSettings";
@@ -184,33 +184,35 @@ export type GridHandle = {
 };
 
 const Grid = forwardRef<GridHandle, GridProps>(({ data }, ref) => {
-  const [gridApi, setGridApi] = useState<GridApi>();
-
-  const onGridReady = ({ api }: AgGridEvent) => {
-    setGridApi(api);
-  };
+  const grid = useRef<AgGridReact>(null);
 
   useImperativeHandle(ref, () => ({
     resetGrid() {
       // No need to clear localStorage because resetting will cause onSortOrFilterChange to fire (and re-save localStorage)
-      gridApi?.applyColumnState(resetColumnStateParams);
-      gridApi?.setFilterModel(null);
+      const gridApi = grid.current?.api;
+
+      if (!gridApi) {
+        return;
+      }
+
+      gridApi.applyColumnState(resetColumnStateParams);
+      gridApi.setFilterModel(null);
 
       // Delay this so that the column state and filters can reset before autosizing
-      setTimeout(() => { gridApi?.autoSizeAllColumns(true); }, 100);
+      setTimeout(() => { gridApi.autoSizeAllColumns(true); }, 100);
     },
   }));
 
   return (
     <div id="table-wrapper" className="ag-theme-balham-dark">
       <AgGridReact
+        ref={grid}
         columnDefs={columnDefs}
         defaultColDef={defaultColDef}
         rowData={data}
         multiSortKey={"ctrl"}
         suppressCellFocus={true}
         enableCellTextSelection={true}
-        onGridReady={onGridReady}
         onFirstDataRendered={onFirstDataRendered}
         onSortChanged={onSortOrFilterChange}
         onFilterChanged={onSortOrFilterChange}
