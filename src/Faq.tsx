@@ -19,12 +19,12 @@ const Faq = ({ show, onHide }: FaqProps) => (
     <Modal.Body>
       <dl>
         <dt>
-          Why does Lenovo say there are 235 (big number) products found but you
-          only show 160 (smaller)?
+          Why do some rows have no Buy link?
         </dt>
         <dd>
-          Some of those are already out of stock, I filtered out anything that
-          is out of stock.
+	  Lenovo reports these as out of stock, so I removed the Buy link.
+	  These rows with out-of-stock laptops are filtered out in the default
+	  view.
         </dd>
       </dl>
       <dl>

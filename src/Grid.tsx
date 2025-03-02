@@ -10,13 +10,20 @@ import { LaptopData } from "./data";
 
 interface BuyProps {
   value: string,
+  data: LaptopData,
 };
 
-const Buy = ({ value }: BuyProps) => (
-  <a target="_blank" rel="noopener noreferrer" href={value}>
-    Buy
-  </a>
-);
+const Buy = ({ value, data }: BuyProps) => {
+  if (data && data["available"]) {
+    return (
+      <a target="_blank" rel="noopener noreferrer" href={value}>
+	Buy
+      </a>
+    )
+  } else {
+    return undefined;
+  }
+};
 
 const defaultColDef = {
   sortable: true,
@@ -85,7 +92,15 @@ const storageComparator = (aStr: string | null, bStr: string | null) => {
 };
 
 const columnDefs: ColDef[] = [
-  { headerName: "", field: "url", width: 44, cellRenderer: Buy },
+  { headerName: "",
+    field: "url",
+    width: 44,
+    cellRenderer: Buy,
+    filter: true,
+    filterParams: {
+      defaultOption: 'notBlank',
+    },
+  },
   {
     headerName: "Price",
     field: "price",

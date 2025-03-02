@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export type LaptopData = {[key: string]: string | number};
+export type LaptopData = {[key: string]: string | number | boolean};
 
 const storageAddr0 = "https://jsonblob.com/api/jsonBlob/1104252648328282112";
 const storageAddr1 = "https://jsonblob.com/api/jsonBlob/1104252815584542720";

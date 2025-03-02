@@ -4,7 +4,7 @@ import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
-import { useData, loadFromStorage, dataToCsv, download } from "./data";
+import { useData, loadFromStorage, dataToCsv, download, LaptopData } from "./data";
 import {
   getTime,
   getLastScrapeTime,
@@ -30,6 +30,11 @@ const lastUpdatedText = (scrapeTime: Date | null): string =>
   scrapeTime
     ? `, last updated ${formatDistance(scrapeTime, new Date(), { addSuffix: true })}`
     : "";
+
+const unavailableCount = (data: LaptopData[]): string => {
+  const count = data.filter((row: LaptopData) => !row["available"]).length;
+  return count > 0 ? `, ${count} unavailable` : ""
+}
 
 const App = () => {
   const data = useData();
@@ -94,7 +99,7 @@ const App = () => {
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
             <small>
-              {data.length} laptops found{lastUpdatedText(scrapeTime)}
+              {data.length} laptops found{unavailableCount(data)}{lastUpdatedText(scrapeTime)}
             </small>
           </Navbar.Text>
           <Form className="ms-1">
