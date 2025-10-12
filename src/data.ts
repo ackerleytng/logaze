@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 export type LaptopData = {[key: string]: string | number | boolean};
 
-const storageAddr0 = "https://jsonblob.com/api/jsonBlob/1104252648328282112";
-const storageAddr1 = "https://jsonblob.com/api/jsonBlob/1104252815584542720";
+const storageAddr0 = "https://pub-541ecefd362f4cae9488d0709bbbb5fa.r2.dev/part-0";
+const storageAddr1 = "https://pub-541ecefd362f4cae9488d0709bbbb5fa.r2.dev/part-1";
 
 const loadFromStorageLocation = async (location: string) => {
     const response = await fetch(location);
