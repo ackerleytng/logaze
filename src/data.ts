@@ -2,22 +2,39 @@ import { useState, useEffect } from "react";
 
 export type LaptopData = {[key: string]: string | number | boolean};
 
+export type StoredData = {
+  laptopData: LaptopData[];
+  lastModified: Date;
+};
+
 const storageAddr0 = "https://pub-541ecefd362f4cae9488d0709bbbb5fa.r2.dev/part-0";
 const storageAddr1 = "https://pub-541ecefd362f4cae9488d0709bbbb5fa.r2.dev/part-1";
 
-const loadFromStorageLocation = async (location: string) => {
-    const response = await fetch(location);
-    return response.json();
+const loadFromStorageLocation = async (location: string): Promise<StoredData> => {
+  const response = await fetch(location);
+  const lastModifiedString = response.headers.get("Last-Modified") as string;
+  return {
+    laptopData: await response.json(),
+    lastModified: new Date(lastModifiedString),
+  };
 };
 
-export const loadFromStorage = async (): Promise<LaptopData[]> => {
-    const part0 = await loadFromStorageLocation(storageAddr0);
-    const part1 = await loadFromStorageLocation(storageAddr1);
-    return part0.concat(part1);
+export const loadFromStorage = async (): Promise<StoredData> => {
+  const { laptopData: part0, lastModified } = await loadFromStorageLocation(storageAddr0);
+  const { laptopData: part1 } = await loadFromStorageLocation(storageAddr1);
+  return {
+    laptopData: part0.concat(part1),
+    lastModified,
+  };
 };
 
-export const useData = (): LaptopData[] => {
-  const [data, setData] = useState<LaptopData[]>([]);
+const initialStoredData: StoredData = {
+  laptopData: [],
+  lastModified: new Date(),
+}
+
+export const useData = (): StoredData => {
+  const [data, setData] = useState<StoredData>(initialStoredData);
 
   useEffect(() => {
     loadFromStorage().then(setData);

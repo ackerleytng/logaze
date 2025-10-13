@@ -5,12 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
 import { useData, loadFromStorage, dataToCsv, download, LaptopData } from "./data";
-import {
-  getTime,
-  getLastScrapeTime,
-  setLastScrapeTime,
-  useScrapeTime,
-} from "./time";
+import { getTime } from "./time";
 import Grid, { GridHandle } from "./Grid";
 import About from "./About";
 import Faq from "./Faq";
@@ -18,11 +13,10 @@ import RescrapeToast from "./RescrapeToast";
 import Mascot from "./images/pouchie-bino-white-bg.svg?react";
 
 const downloadCsv = (): Promise<void> =>
-  loadFromStorage().then((data) => download("logaze.csv", dataToCsv(data)));
+  loadFromStorage().then(({ laptopData: data }) => download("logaze.csv", dataToCsv(data)));
 
-const shouldScrape = async (): Promise<boolean> => {
+const shouldScrape = async (last: Date): Promise<boolean> => {
   const now = await getTime();
-  const last = await getLastScrapeTime();
   return isAfter(now, addHours(last, 4));
 };
 
@@ -37,8 +31,7 @@ const unavailableCount = (data: LaptopData[]): string => {
 }
 
 const App = () => {
-  const data = useData();
-  const scrapeTime = useScrapeTime();
+  const { laptopData: data, lastModified } = useData();
   const scraperAddr = "https://logaze-scraper.onrender.com/";
 
   const [aboutModalShow, setAboutModalShow] = useState(false);
@@ -48,14 +41,12 @@ const App = () => {
 
   const rescrape = () => {
     setRescrapeBeforeToastShow(true);
-    fetch(scraperAddr)
-      .then(() => getTime().then(setLastScrapeTime))
-      .then(() => setRescrapeAfterToastShow(true));
+    fetch(scraperAddr).then(() => setRescrapeAfterToastShow(true));
   };
 
   useEffect(() => {
     const scrapeIfNecessary = async () => {
-      if (await shouldScrape()) {
+      if (await shouldScrape(lastModified)) {
         rescrape();
       }
     };
@@ -99,7 +90,7 @@ const App = () => {
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
             <small>
-              {data.length} laptops found{unavailableCount(data)}{lastUpdatedText(scrapeTime)}
+              {data.length} laptops found{unavailableCount(data)}{lastUpdatedText(lastModified)}
             </small>
           </Navbar.Text>
           <Form className="ms-1">
