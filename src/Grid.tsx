@@ -107,7 +107,7 @@ const columnDefs: ColDef[] = [
     width: 75,
     filter: "agNumberColumnFilter",
     sort: "asc",
-    valueFormatter: ({ value }) => value.toFixed(2),
+    valueFormatter: ({ value }) => value?.toFixed(2) ?? "",
   },
   { headerName: "Condition", field: "product-condition", width: 70 },
   { headerName: "Model", field: "model" },
@@ -154,7 +154,7 @@ const columnDefs: ColDef[] = [
     field: "orig-price",
     width: 75,
     filter: "agNumberColumnFilter",
-    valueFormatter: ({ value }) => value.toFixed(2),
+    valueFormatter: ({ value }) => value?.toFixed(2) ?? "",
   },
   {
     headerName: "Percentage Savings",
